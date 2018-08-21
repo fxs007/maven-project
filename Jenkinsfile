@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'node-36'
 
     parameters {
          string(name: 'tomcat_dev', defaultValue: '10.74.68.133', description: 'Staging Server')
