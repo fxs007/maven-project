@@ -1,6 +1,7 @@
 pipeline {
-    agent 'node-36'
-
+    agent {
+        label 'node-36'
+    }
     parameters {
          string(name: 'tomcat_dev', defaultValue: '10.74.68.133', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: '10.74.68.133', description: 'Production Server')
