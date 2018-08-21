@@ -18,7 +18,7 @@ stages{
             steps {
                 sh 'mvn clean package'
                 sh 'env && pwd && id'
-                sh 'docker build . -t tomcatwebapp:${env.BUILD_ID}'
+                sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
                 // docker push
             }
             post {
