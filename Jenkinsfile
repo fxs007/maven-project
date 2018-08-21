@@ -3,8 +3,10 @@ pipeline {
         label 'node-36'
     }
     parameters {
-         string(name: 'tomcat_dev', defaultValue: '10.74.68.133', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: '10.74.68.133', description: 'Production Server')
+         string(name: 'ip_dev', defaultValue: '10.74.68.133', description: 'Staging Server')
+         string(name: 'ip_prod', defaultValue: '10.74.68.133', description: 'Production Server')
+         string(name: 'user_dev', defaultVaule: 'kube', description: 'User of Staging Server')
+         string(name: 'user_prod', defaultVaule: 'kube', description: 'User of Production Server')
     }
 
     triggers {
@@ -28,13 +30,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp **/target/*.war kube@${params.tomcat_dev}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
+                        sh "pwd && id && scp **/target/*.war ${params.user_dev}@${params.ip_dev}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp **/target/*.war kube@${params.tomcat_prod}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
+                        sh "scp **/target/*.war ${params.user_prod}@${params.ip_prod}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
                     }
                 }
             }
