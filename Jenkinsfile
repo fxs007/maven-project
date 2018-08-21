@@ -17,7 +17,9 @@ stages{
         stage('Build'){
             steps {
                 sh 'mvn clean package'
+                sh 'env && pwd && id'
                 sh 'docker build . -t tomcatwebapp:${env.BUILD_ID}'
+                // docker push
             }
             post {
                 success {
@@ -31,8 +33,8 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                                         //provision ssh key in advance
-                        sh "pwd && id && scp **/target/*.war ${params.user_dev}@${params.ip_dev}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
+                        //provision ssh key in advance
+                        sh "scp **/target/*.war ${params.user_dev}@${params.ip_dev}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
                     }
                 }
 
