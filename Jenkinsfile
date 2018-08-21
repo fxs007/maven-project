@@ -5,8 +5,8 @@ pipeline {
     parameters {
          string(name: 'ip_dev', defaultValue: '10.74.68.133', description: 'Staging Server')
          string(name: 'ip_prod', defaultValue: '10.74.68.133', description: 'Production Server')
-         string(name: 'user_dev', defaultVaule: 'kube', description: 'User of Staging Server')
-         string(name: 'user_prod', defaultVaule: 'kube', description: 'User of Production Server')
+         string(name: 'user_dev', defaultValue: 'kube', description: 'User of Staging Server')
+         string(name: 'user_prod', defaultValue: 'kube', description: 'User of Production Server')
     }
 
     triggers {
