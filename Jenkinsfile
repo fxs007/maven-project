@@ -30,6 +30,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
+                                         //provision ssh key in advance
                         sh "pwd && id && scp **/target/*.war ${params.user_dev}@${params.ip_dev}:/opt/tomcat/apache-tomcat-8.5.32/webapps/"
                     }
                 }
